@@ -1,24 +1,45 @@
+html {
+  box-sizing: border-box
+}
+
+/* The Universal Selector */
+*, /* All elements*/
+*::before, /* All ::before pseudo-elements */
+*::after { /* All ::after pseudo-elements */
+  /* height & width will now include border & padding by default
+     but can be over-ridden as needed */
+  box-sizing: inherit;
+}
+
+/* resets font size to be 62.5% of the user preference - 
+     in most browser configurations this will be 10px */
+:root {
+    /* font-size: 62.5% */
+}
+
 body {
+  /* Use a system font, if none are available use an available sans-sarif font */
 	background: linear-gradient(
 -45deg
 , #ee7752, #3551b7, #23a6d5, #69eacc);
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
   margin: auto;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    font-family: 'Verdana', cursive;
-    color: white;
-}
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: Helvetica;
+  color: white;
 
-body {
+  --darkbg: #729EC7;
+  --lightbg: #E1F5FF;
+  --lightgrey: #f1f1f1;
+  --medgray: #ceced1;
+  --darkgrey: #8e8f91;
+  --darkblue: #010363;
   
-  grid-template-rows: 50px 1fr;
-  grid-template-areas: 
-    "nav"
-    "main"
+    
 }
 
 @keyframes gradient {
@@ -33,163 +54,102 @@ body {
 	}
 }
 
-a {
-  color: darkblue;
-    border: 1px ridge lightblue;
-    border-radius: 8px;
-    padding: 4px 5px 6px 5px;
+#footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background: #f857a8;
+  background: -webkit-linear-gradient(45deg, #f857a8, #ff5858);
+  background: linear-gradient(45deg, #f857a8, #ff5858);
+  color: white;
+  text-align: center;
+  line-height: 50px;
+  vertical-align: middle;
+}
+#footer a {
+  color: white;
+  text-decoration:underline;
 }
 
 h1 {
-  margin-bottom: 50px;
-  color: rgb(13, 1, 128);
-  font-size: 25px;
+  line-height: 1.2em;
+  color: var(--darkblue);
 }
 
 #airplane {
   width: 300px;
   float: right;
-  border-radius: 20px;
   box-shadow: 0px 0px 50px lightskyblue;
+  border-radius: 20px;
+ 
+}
+#errorBtn {
+  color: var(--darkblue);
+  border: 2px ridge lightblue;
+  border-radius: 8px;
+  padding: 4px 5px 6px 5px;
+  font-size: 25px;
+  margin-top: 40px;
+  background-color: #b1e0ef29;
 }
 
 pre {
-  margin-top:70px
+  margin-top:70px;
+  line-height: 1.5em;
 }
 
-* {
-  box-sizing: border-box;
-  font-family: Helvetica;
-  color: #424748;
-}
-
-
-/* 
-body > nav {
-  grid-area: nav;
-  background-color: #B8C0C2;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 20px 0 30px;
-}
-
-nav > img {
-  width: 34px;
-  object-fit: contain;
-  margin-right: auto;
-}
-
-body > main {
-  grid-area: main;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #E8ECEB;
-  padding: 20px;
-  overflow-y: scroll;
-}
-
-body > main h1:first-child {
-  margin-bottom: 50px;
-}
-
-nav > a {
-  margin: 20px;
-  text-decoration: none;
-  padding: 10px;
-  border-radius: 5px;
-}
-
-nav > a:hover {
-  color: white;
-  background-color: #424748;
-}
-
-nav > a.active {
-  color: white;
-}
-
-#new-form {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(2, minmax(auto, 22rem));
-}
-
-#new-form *,
-#add-review-form *,
-#add-performer-form * {
-  font-size: 20px;
-  padding: 5px;
-  border-radius: 5px;
-}
-
-#new-form input[type="submit"] {
-  grid-column: span 2;
-  width: 10rem;
-  margin-left: auto;
-}
+/* Table for flights info */
 
 table {
-  font-size: 20px;
+  border-spacing: 0;
+  margin: 20px auto;
+  font-size: 1.2rem;
+  border-collapse: collapse;
+  border-radius: 1em;
+  overflow: hidden;
 }
 
-table thead th {
-  padding: 5px;
-  border-bottom: 2px solid #424748;
+
+table a {
+  font-size: 1.2rem;
 }
 
-table td {
-  padding: 10px;
-  text-align: center;
+tbody > tr:nth-child(even){
+  background: var(--medgray);
+  color: var(--darkblue);
+}
+tbody > tr:nth-child(odd) {
+  background: var(--lightgrey);
+  color: var(--darkblue);
 }
 
-#list td:nth-child(2), #list td:nth-child(3){
-  min-width: 100px;
+th, td {
+  text-align:left;
+  padding: 1em;
+  
+  border-bottom: 2px solid white; 
 }
 
-#list a {
-  border-radius: 4px;
-  background-color: #B8C0C2;
-  padding: 4px;
-  text-decoration: none;
-  font-size: 14px;
+th {
+  font-size: 1.5rem;
+  color: var(--darkblue);
+  background-color: var(--darkgrey);
 }
 
-#list a:hover {
+.Btn {
+  color: #f857a8;
   background-color: white;
+  font-size: 1.3rem;
+  border-radius:5px;
+  border: 2px solid gray;
+  box-shadow: 0 0 5px lightgrey;
 }
 
-#show-page {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 1rem;
+.Btn:hover {
+  box-shadow: 0 0 5px gray;
+  background-color: rgb(197, 193, 193);
+  border: 2px solid rgb(78, 76, 76);
 }
 
-#show-page div:nth-child(even) {
-  font-weight: bold;
-}
 
-#add-review-form,
-#add-performer-form {
-  display: grid;
-  grid-template-columns: auto auto;
-  grid-gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-#add-review-form input[type="submit"],
-#add-performer-form input[type="submit"] {
-  width: 10rem;
-  grid-column: 2 / 3;
-}
-
-ul {
-  margin: 0 0 1rem;
-  padding: 0;
-  list-style: none;
-}
-
-li {
-  font-weight: bold;
-} */

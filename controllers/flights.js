@@ -30,6 +30,7 @@ function newFlight(req, res) {
   })
 }
 
+
 // function create(req, res) {
 //   const flight = new Flight(req.body);
 //   flight.save( err => {

@@ -1,21 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/nav.ejs') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Flights</title>
-</head>
-
-<body>
-    <div class="topnav">
-        <a class="active" href="/flights">All Flights</a>
-        <a href="/flights/new">New Flight</a>
-    </div>
-    <h2>Enter a New Flight</h2>
     <form action="/flights" method="POST">
-    <table>
+    <table class="table table-sm">
         <thead>
             <tr>
                 <th>Flight Number</th>
@@ -54,6 +41,5 @@
     
     <input type="submit" value="Save Flight">
     </form>
-</body>
 
-</html>
+<%- include('../partials/footer.ejs') %>
