@@ -152,4 +152,56 @@ th {
   border: 2px solid rgb(78, 76, 76);
 }
 
+input[type=submit] {
+  color: var(--darkblue);
+  background-color: white;
+  font-size: 1.3rem;
+  border-radius:8px;
+  border: 2px solid gray;
+}
+
+input[type=submit]:hover {
+  box-shadow: 0 0 5px gray;
+  background-color: rgb(197, 193, 193);
+  border: 2px solid rgb(78, 76, 76);
+}
+
+
+
+.input {
+  width: 100px;
+  height:30px;
+}
+.input-time {
+  width: 200px;
+  height:30px;
+}
+
+select {
+  /* width: 120px; */
+  height:30px;
+}
+
+input[type=submit]:active {
+  background: var(--darkbg);
+  color: var(--lightbg);
+}
+
+input.delete-ecks {
+  border-radius: 4;
+  margin: 0;
+  font-size: 1.6rem;
+  color: var(--darkgrey);
+  padding: 8px 12px;
+  background: var(--lightgrey) !important;
+}
+
+input.delete-ecks:active {
+  border-radius: 4;
+  margin: 0;
+  font-size: 1.6rem;
+  color: var(--darkgrey);
+  padding: 8px 12px;
+  background: var(--lightbg) !important;
+}
 

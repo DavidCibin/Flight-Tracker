@@ -2,10 +2,10 @@
 <%- include('../partials/nav.ejs') %>
 
     <form action="/flights" method="POST">
-    <table class="table table-sm">
+    <table>
         <thead>
             <tr>
-                <th>Flight Number</th>
+                <th>Flight #</th>
                 <th>Airline</th>
                 <th>Airport</th>
                 <th>Departs</th>
@@ -14,7 +14,7 @@
         <tbody>
             <tr>
                 <td>
-                    <input type="number" required name="flightNo" class="short-input" min=10 max=9999 />
+                    <input type="number" required name="flightNo" class="input" min=10 max=9999 />
                 </td>
                 <td>
                     <select name="airline">
@@ -33,7 +33,7 @@
                     </select>
                 </td>
                 <td>
-                    <input type="datetime-local" name="departs">
+                    <input type="datetime-local" name="departs" class="input-time">
                 </td>
             </tr>
         </tbody>
