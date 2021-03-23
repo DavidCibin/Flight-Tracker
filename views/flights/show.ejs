@@ -1,93 +1,160 @@
 <%- include('../partials/header.ejs') %>
-<%- include('../partials/nav.ejs') %>
+    <%- include('../partials/nav.ejs') %>
 
-<div id="show">
-<table>
-    <thead>
-    <tr>
-        <th>Airline</th>
-        <th>Flight #</th>
-        <th>Airport</th>
-        <th>Departs</th>
-        <th>Delete</th>
-    </tr>
-    </thead>
-    <tbody>
-        <td><%= flight.airline %></td>
-        <td><%= flight.flightNo %></td>
-        <td><%= flight.airport %></td>
+        <div id="show">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Airline</th>
+                        <th>Flight #</th>
+                        <th>Airport</th>
+                        <th>Departs</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                       <td><%= flight.airline %></td>
+                        <td><%= flight.flightNo %></td>
+                        <td><%= flight.airport %></td>
+                        <td>
+                            <% const dt=flight.departs; const departsDate=dt.toISOString().slice(0, 16).replace("T", " " ); %>
+                            <%= departsDate %>
+                        </td>
+                        <td>
+                            <form action="/flights/<%=flight._id%>?_method=DELETE" method="POST"><input type="submit" value="X" class="Btn"></form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-        <td>
-            <% 
-              const dt = flight.departs;
-              const departsDate = dt.toISOString().slice(0, 16).replace("T", " ");
-            %> 
-            <%= departsDate %>
-        </td>
+        <div class="tickets">
 
-        <!-- <td><%= flight.departs %></td> -->
-        <td><form action="/flights/<%=flight._id%>?_method=DELETE" method="POST"><input type="submit" value="X" class="Btn"></form></td>
-    </tr>
-    </tbody>
-</table>
-</div>
+            <div class="column1">
+                <form action="/flights/<%=flight._id%>" method="POST" id="add-ticket">
+                    <h1>Add Tickets</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th><label for="seat">Seat</label></th>
+                                <th>Price</th>
+                                <th>Confirm</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input name="seat" class="input" maxlength="3" style="text-transform:uppercase"
+                                        required placeholder="A1-F9" pattern="[A-F][1-9]\d?">
+                                </td>
+                                <td>
+                                    <input type="number" placeholder="0.00" class="input" name="price" min=0>
+                                </td>
+                                <td>
+                                    <input type="submit" value="Add Ticket">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
 
-<div class="tickets">
+            <div class="column2">
+                <% if(flight.tickets.length> 0) { %>
 
-<div class="column1">
-<form action="/flights/<%=flight._id%>" method="POST" id="add-ticket">
-    <h1>Add Tickets</h1>
-    <table>
-        <thead>
-            <tr>
-                <th><label for="seat">Seat</label></th>
-                <th>Price</th>
-                <th>Confirm</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <input name="seat" class="input" maxlength="2" style="text-transform:uppercase" required placeholder="A1-F9" pattern="[A-F][1-9]\d?">
-                </td>
-                <td>
-                    <input type="number" value="0.00" class="input" name="price" min=0>
-                </td>
-                <td>
-                    <input type="submit" value="Add Ticket">
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    </form>
-</div>
+                    <h1>Tickets</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Seat</th>
+                                <th>Price</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% flight.tickets.forEach(ticket=> { %>
+                                <tr>
+                                    <td>
+                                        <%= ticket.seat %>
+                                    </td>
+                                    <td>$<%= ticket.price %>
+                                    </td>
+                                    <td>
+                                        <form action="/flights/<%=flight._id%>/<%=ticket._id%>?_method=DELETE"
+                                            method="POST"><input type="submit" value="X" class="Btn"></form>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+                    <% } %>
+            </div>
 
-<div class="column2">
-<% if(flight.tickets.length > 0) { %>
-    
-        <h1>Tickets</h1>
-        <table>
-            <thead>
-                <tr>
-                    <th>Seat</th>
-                    <th>Price</th>
-                    <th>Delete</th>
-                </tr>
-            </thead>
-            <tbody>
-        <% flight.tickets.forEach(ticket => { %>
-                <tr>
-                    <td><%= ticket.seat %></td>
-                    <td>$<%= ticket.price %></td>
-                    <td><form action="/flights/<%=flight._id%>/<%=ticket._id%>?_method=DELETE" method="POST"><input type="submit" value="X" class="Btn"></form></td>
-                </tr>
-        <% }) %>
-            </tbody>
-        </table>
-    <% } %>    
-</div>   
 
-</div>
-</section>
 
-<%- include('../partials/footer.ejs') %>
+
+
+            <div class="column3">
+                <h1>Add Destinations</h1>
+                <form class="add-destinations" action="/flights/<%=flight._id%>/destinations" method="post"></form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Airport</th>
+                            <th>Confirm</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <select name="airportId">
+                                    <% destinations.forEach( dest=> { %>
+                                        <option value="<%= dest._id %>">
+                                            <%= dest.airport %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="submit" value="Add">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="column4">
+
+                <% if(flight.destinations.length> 0) { %>
+
+                    <h1>Destinations</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Airport</th>
+                                <th>Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% flight.destinations.forEach(dest=> { %>
+                                <tr>
+                                    <td>
+                                        <%= dest.airport %>
+                                    </td>
+                                    <td>
+                                        <form action="/flights/<%=flight._id%>/<%=dest._id%>?_method=PUT" method="POST">
+                                            <input type="submit" value="X" class="Btn">
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+
+                    <% } %>
+
+            </div>
+        </div>
+
+        <%- include('../partials/footer.ejs') %>

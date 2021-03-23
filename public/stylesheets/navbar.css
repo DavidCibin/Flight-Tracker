@@ -74,9 +74,9 @@ button {
     padding: 0 1em;
   }
   span.gradient {
-    background: #f857a8;
-    background: -webkit-linear-gradient(45deg, #f857a8, #ff5858);
-    background: linear-gradient(45deg, #f857a8, #ff5858);
+    background: #010363;
+    background: -webkit-linear-gradient(45deg, #022671, #0452f3);
+    background: linear-gradient(45deg, #022671, #0452f3);
     padding: 0 1em;
     position: relative;
     right: 1em;
@@ -105,7 +105,7 @@ button {
   }
   a:link, a:visited, a:active {
     text-decoration: none;
-    color: #f857a8;
+    color: #010363;
   }
   a:hover {
     text-decoration: underline;
@@ -116,7 +116,7 @@ button {
     height: 100%;
   }
   .btn-nav {
-    color: #f857a8;
+    color: #010363;
     padding-left: 2em;
     padding-right: 2em;
   }
@@ -143,9 +143,9 @@ button {
       display: none;
     }
     .nav a:link.active, a:visited.active, a:active.active {
-      background: #f857a8;
-      background: -webkit-linear-gradient(45deg, #f857a8, #ff5858);
-      background: linear-gradient(45deg, #f857a8, #ff5858);
+      background: #010363;
+      background: -webkit-linear-gradient(45deg, #022671, #0452f3);
+      background: linear-gradient(45deg, #022671, #0452f3);
       color: #fff;
     }
     .nav-link-span {

@@ -3,6 +3,7 @@ const Destination = require('../models/destination')
 
 module.exports = {
   index,
+  indexSort,
   new: newFlight,
   create,
   show,
@@ -172,16 +173,16 @@ function sortDepart(req, res) {
     .catch(err => console.log(err))
 }
 
-// function sortDepart(req, res) {
-//   Flight.find({}).sort({ departs: 'asc' }, function (flights) {
-//     const now = new Date().toISOString();
-//     flights.forEach(function (flights) {
-//       if (flight.departs.toISOString() < now) flight.past = true;
-//     })
-//     res.render('flights/index', {
-//       title: "All Flights",
-//       flights
-//     })
-//   })
-//   if (err) console.log(err);
-// }
+function indexSort(req, res) {
+  Flight.find({}).sort({departs: 'asc'})
+      .then( flights => {
+          const now = new Date().toISOString();
+          flights.forEach( flight => {
+              if (flight.departs.toISOString() < now) flight.past = true;
+          })
+          res.render('flights/index', {
+              title: "All Flights",
+              flights })
+      })
+      .catch(err => console.log(err))
+}

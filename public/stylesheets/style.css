@@ -19,11 +19,13 @@ html {
 
 body {
   /* Use a system font, if none are available use an available sans-sarif font */
-	background: linear-gradient(
+	/* background: linear-gradient(
 -45deg
 , #ee7752, #3551b7, #23a6d5, #69eacc);
 	background-size: 400% 400%;
-	animation: gradient 25s ease infinite;
+	animation: gradient 25s ease infinite; */
+  background: -webkit-linear-gradient(0deg, #8e8f91, lightgray, #8e8f91);
+  background: linear-gradient(0deg, #8e8f91, lightgray, #8e8f91);
   margin: auto;
   display: grid;
   justify-content: center;
@@ -59,9 +61,9 @@ body {
   left: 0;
   bottom: 0;
   width: 100%;
-  background: #f857a8;
-  background: -webkit-linear-gradient(45deg, #f857a8, #ff5858);
-  background: linear-gradient(45deg, #f857a8, #ff5858);
+  background: #010363;
+  background: -webkit-linear-gradient(45deg, #022671, #0452f3);
+  background: linear-gradient(45deg, #022671, #0452f3);
   color: white;
   text-align: center;
   line-height: 50px;
@@ -110,7 +112,6 @@ table {
   overflow: hidden;
 }
 
-
 table a {
   font-size: 1.2rem;
 }
@@ -126,8 +127,7 @@ tbody > tr:nth-child(odd) {
 
 th, td {
   text-align:left;
-  padding: 1em;
-  
+  padding: 1em;  
   border-bottom: 2px solid white; 
 }
 
@@ -138,7 +138,7 @@ th {
 }
 
 .Btn {
-  color: #f857a8;
+  color: #010363;
   background-color: white;
   font-size: 1.3rem;
   border-radius:5px;
@@ -164,22 +164,24 @@ input[type=submit]:hover {
   box-shadow: 0 0 5px gray;
   background-color: rgb(197, 193, 193);
   border: 2px solid rgb(78, 76, 76);
+  border-radius: 5px;
 }
-
-
 
 .input {
   width: 100px;
   height:30px;
+  border-radius: 5px;
 }
 .input-time {
   width: 200px;
   height:30px;
+  border-radius: 5px;
 }
 
 select {
   /* width: 120px; */
   height:30px;
+  border-radius: 5px;
 }
 
 input[type=submit]:active {
@@ -206,22 +208,49 @@ input.delete-ecks:active {
 }
 
 #show {
-  float: left;
-}
-.tickets .destinations{
-  display: flex;
-  /* padding: 10px; */
+  display: grid;
+  justify-content: flex-start;
 }
 
-.column1 {
-  flex: 50%;
-  float:left;
-  margin-right: 110px;
+.tickets {
+  display: grid;
+  /* grid-template-columns: repeat(2, 1fr); */
+  grid-gap: 30px;
+  grid-auto-rows: auto;
+  grid-auto-columns: auto;
+  height: 100hv;
+  width: 100%;
+  justify-items: baseline;
 }
-.column2 {
-  flex: 50%;
-  float:left;
-  margin-right: 110px;
+.column1 {
+  grid-column: 1 / 2;
+  grid-row: 1;
+}
+.column2 { 
+  grid-column: 2 / 2;
+  grid-row: 1;
+}
+.column3 {
+  grid-column: 1 / 2;
+  grid-row: 2;
+}
+.column4 {
+  grid-column: 2 / 4;
+  grid-row: 2;
+}
+
+
+.destinations{
+  display: flex;
+} 
+.column5 {
+  margin-right: 100px;
+}
+
+main {
+  width:900px;
+  margin-top: 80px;
+  margin-bottom: 80px;
 }
 
 #main-title {
@@ -234,4 +263,19 @@ input.delete-ecks:active {
   font-size: 20px;
   text-shadow: 0 0 3px black;
   text-align: center;
+}
+
+.sortBtn {
+  color:var(--darkblue);
+  background-color: white;
+  font-size: 1.3rem;
+  border-radius:5px;
+  border: 2px solid gray;
+  box-shadow: 0 0 5px lightgrey;
+}
+
+.sortBtn:hover {
+  box-shadow: 0 0 5px gray;
+  background-color: rgb(197, 193, 193);
+  border: 2px solid rgb(78, 76, 76);
 }
