@@ -24,7 +24,11 @@
             <%= f.airport %>
           </td>
           <td>
-            <%= f.departs %>
+            <% 
+              const dt = f.departs;
+              const departsDate = dt.toISOString().slice(0, 16).replace("T", " ");
+            %> 
+            <%= departsDate %>
           </td>
           <td><a href="/flights/<%=f._id%>"><button class="Btn">Info</button></a></td>
         </tr>

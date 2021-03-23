@@ -1,0 +1,64 @@
+<%- include('../partials/header.ejs') %>
+    <%- include('../partials/nav.ejs') %>
+
+        <div class="destinations">
+
+            <div class="column1">
+                <h1>Enter Destination</h1>
+                <form action="/destinations" method="POST" class="add-destinations">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Airport</th>
+                                <th>Confirm</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" required name="airport" maxlength="3"
+                                        style="text-transform:uppercase" class="input">
+                                </td>
+                                <td>
+                                    <input type="submit" value="Add">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <% if (typeof err==='object' && err.code===11000) { %>
+                        <h4>
+                            Duplicate entry!<br>Enter new destination.
+                        </h4>
+                        <% } %>
+                </form>
+            </div>
+
+            <div class="column2">
+                <% if (typeof destinations==='object' && destinations.length> 0) { %>
+                    <h1>Current Destinations</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Airport</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% destinations.forEach( function(dest) { %>
+                                <tr>
+                                    <td>
+                                        <%= dest.airport %>
+                                    </td>
+                                    <td>
+                                        <form action="/destinations/<%=dest._id%>?_method=DELETE" method="POST"><input type="submit" value="X" class="Btn"></form>
+                                    </td>
+                                </tr>
+                                <% }) %>
+                        </tbody>
+                    </table>
+
+                    <% } %>
+            </div>
+        </div>
+
+        <%- include('../partials/footer.ejs') %>

@@ -1,0 +1,93 @@
+<%- include('../partials/header.ejs') %>
+<%- include('../partials/nav.ejs') %>
+
+<div id="show">
+<table>
+    <thead>
+    <tr>
+        <th>Airline</th>
+        <th>Flight #</th>
+        <th>Airport</th>
+        <th>Departs</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+        <td><%= flight.airline %></td>
+        <td><%= flight.flightNo %></td>
+        <td><%= flight.airport %></td>
+
+        <td>
+            <% 
+              const dt = flight.departs;
+              const departsDate = dt.toISOString().slice(0, 16).replace("T", " ");
+            %> 
+            <%= departsDate %>
+        </td>
+
+        <!-- <td><%= flight.departs %></td> -->
+        <td><form action="/flights/<%=flight._id%>?_method=DELETE" method="POST"><input type="submit" value="X" class="Btn"></form></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+
+<div class="tickets">
+
+<div class="column1">
+<form action="/flights/<%=flight._id%>" method="POST" id="add-ticket">
+    <h1>Add Tickets</h1>
+    <table>
+        <thead>
+            <tr>
+                <th><label for="seat">Seat</label></th>
+                <th>Price</th>
+                <th>Confirm</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input name="seat" class="input" maxlength="2" style="text-transform:uppercase" required placeholder="A1-F9" pattern="[A-F][1-9]\d?">
+                </td>
+                <td>
+                    <input type="number" value="0.00" class="input" name="price" min=0>
+                </td>
+                <td>
+                    <input type="submit" value="Add Ticket">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+</div>
+
+<div class="column2">
+<% if(flight.tickets.length > 0) { %>
+    
+        <h1>Tickets</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Seat</th>
+                    <th>Price</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+        <% flight.tickets.forEach(ticket => { %>
+                <tr>
+                    <td><%= ticket.seat %></td>
+                    <td>$<%= ticket.price %></td>
+                    <td><form action="/flights/<%=flight._id%>/<%=ticket._id%>?_method=DELETE" method="POST"><input type="submit" value="X" class="Btn"></form></td>
+                </tr>
+        <% }) %>
+            </tbody>
+        </table>
+    <% } %>    
+</div>   
+
+</div>
+</section>
+
+<%- include('../partials/footer.ejs') %>

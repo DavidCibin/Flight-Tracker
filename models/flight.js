@@ -1,6 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+const ticketSchema = new Schema({
+    seat: {
+        type: String,
+        match: /[A-F][1-9]\d?/
+    },
+    price: {
+        type: Number,
+        min: 0
+    }
+}, {
+    timestamps: true
+})
+
 const flightSchema = new Schema({
     airline: {
         type: String,
@@ -17,26 +30,15 @@ const flightSchema = new Schema({
         min: 10,
         max: 9999
     },
-    departs: {
-        type: Date,
-        default: function () {
-            let oneYearFromNow = new Date();
-            return oneYearFromNow.setFullYear(oneYearFromNow.getFullYear() + 1);
+    departs: {type: Date, default: function() { 
+        const dt = new Date();
+        return dt.setFullYear(dt.getFullYear() +1)
         }
     },
-    
-    // nowFlying: Boolean,
-    // destinations: [destinationsSchema]
-
-})
-
-// const destinationSchema = new Schema ({
-//     airport: {
-//         type: String,
-//         enum: ["AUS", "DFW", "LAX", "SFO", "SEA"]
-//     },
-//     arrival: Date
-// });
-
+    tickets: [ticketSchema],
+    destinations: [{ type: Schema.Types.ObjectId, ref: 'Destination' }]
+}, {
+    timestamps: true
+});
 
 module.exports = mongoose.model('Flight', flightSchema);

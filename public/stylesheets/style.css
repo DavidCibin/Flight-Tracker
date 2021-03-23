@@ -205,3 +205,33 @@ input.delete-ecks:active {
   background: var(--lightbg) !important;
 }
 
+#show {
+  float: left;
+}
+.tickets .destinations{
+  display: flex;
+  /* padding: 10px; */
+}
+
+.column1 {
+  flex: 50%;
+  float:left;
+  margin-right: 110px;
+}
+.column2 {
+  flex: 50%;
+  float:left;
+  margin-right: 110px;
+}
+
+#main-title {
+  font-size: 2.5em;
+  text-decoration: underline overline;
+}
+
+ h4 {
+  color: #fd5872;
+  font-size: 20px;
+  text-shadow: 0 0 3px black;
+  text-align: center;
+}
