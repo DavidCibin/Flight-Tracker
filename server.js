@@ -6,7 +6,7 @@ const logger = require('morgan');
 const methodOverride = require('method-override');
 
 // Connect to Mongoose dB
-// require("dotenv").config()
+require("dotenv").config()
 require('./config/database');
 
 const indexRouter = require('./routes/index');

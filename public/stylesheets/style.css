@@ -39,21 +39,7 @@ body {
   --lightgrey: #f1f1f1;
   --medgray: #ceced1;
   --darkgrey: #8e8f91;
-  --darkblue: #010363;
-  
-    
-}
-
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  --darkblue: #010363; 
 }
 
 #footer {
@@ -240,8 +226,6 @@ input.delete-ecks:active {
   grid-row: 2;
   margin-top: -35px;
 }
-
-
 .destinations{
   display: flex;
 } 
