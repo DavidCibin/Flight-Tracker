@@ -1,15 +1,24 @@
 <%- include('./partials/header.ejs') %>
-<%- include('./partials/nav.ejs') %>
+    <%- include('./partials/nav.ejs') %>
 
-    <img id="airplane" src="/images/airplane.gif">
-    <!-- <h1>
+        <script>
+            function play() {
+                var audio = document.getElementById("audio");
+                audio.play();
+            }
+        </script>
+
+        <img id="airplane" src="/images/airplane.gif" value="PLAY" onclick="play()">
+        <audio id="audio" src="/audio/airplane.mp3"></audio>
+
+        <!-- <h1>
         <%= message %>
     </h1> -->
-    <h2>
-        <%= error.status %>
-    </h2>
-    <h1>Oh no! Wrong page.<br>I hope you didn't miss your flight!</h1>
-    <a href="/"><button id="errorBtn">Home Page</button></a>
-    <pre><%= error.stack %></pre>
+        <h2>
+            <%= error.status %>
+        </h2>
+        <h1>Oh no, wrong page!<br>I hope you didn't miss your flight!</h1>
+        <a href="/"><button id="errorBtn">Home Page</button></a>
+        <pre><%= error.stack %></pre>
 
 <%- include('./partials/footer.ejs') %>

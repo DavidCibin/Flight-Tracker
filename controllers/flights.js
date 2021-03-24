@@ -17,20 +17,20 @@ module.exports = {
 }
 
 function index(req, res) {
-  Flight.find( {}, (err, flights) => {
-      if (err) console.log(err)
-      const now = new Date().toISOString();
-      flights.forEach( flight => {
-          if (flight.departs.toISOString() < now) flight.past = true;
-      })
-      res.render('flights/index', {
-          title: "All Flights",
-          flights
-      })
+  Flight.find({}, (err, flights) => {
+    if (err) console.log(err)
+    const now = new Date().toISOString();
+    flights.forEach(flight => {
+      if (flight.departs.toISOString() < now) flight.past = true;
+    })
+    res.render('flights/index', {
+      title: "All Flights",
+      flights
+    })
   })
 }
 
-function newFlight (req, res) {
+function newFlight(req, res) {
   const newFlight = new Flight();
   const dt = newFlight.departs;
   const departsDate = dt.toISOString().slice(0, 16);
@@ -40,49 +40,6 @@ function newFlight (req, res) {
   })
 }
 
-
-// function create(req, res) {
-//   // Needed to "fix" date formatting to prevent day off by 1
-//   // This is due to the <input type="date"> returning the date
-//   // string in this format:  "YYYY-MM-DD"
-//   // https://stackoverflow.com/questions/7556591/is-the-javascript-date-object-always-one-day-off
-//   const s = req.body.born;
-//   req.body.born = `${s.substr(5, 2)}-${s.substr(8, 2)}-${s.substr(0, 4)}`;
-//   Performer.create(req.body, function(err, performer) {
-//     console.log(performer)
-//     res.redirect('/performers/new')
-//   })
-// }
-
-
-// const s = req.body.born;
-// req.body.born = `${s.substr(5, 2)}-${s.substr(8, 2)}-${s.substr(0, 4)}`;
-// Performer.create(req.body, function(err, performer) {
-//   console.log(performer)
-//   res.redirect('/performers/new')
-
-// This is the testing one
-// function create(req, res) {
-//   console.log('date & time', req.body.departs)
-//   const flight = new Flight(req.body.departs);
-//   // Obtain the default date
-//   const dt = newFlight.departs;
-//   // Format the date for the value attribute of the input
-//   const departsDate = dt.toISOString().slice(0, 16);
-//   flight.save(function (err) {
-//     if (err) {
-//       console.log(err)
-//       return res.render('flights/new', {
-//         departsDate,
-//         title: "Add Flight"
-//       })
-//     }
-//     console.log(flight)
-//     res.redirect('/flights');
-//   })
-// }
-
-// This is the working one
 function create(req, res) {
   const flight = new Flight(req.body);
   flight.save(function (err) {
@@ -113,7 +70,6 @@ function show(req, res) {
     })
 }
 
-
 function delFlight(req, res) {
   Flight.deleteOne({ _id: req.params.id }, function (err) {
     if (err) console.log(err)
@@ -141,50 +97,28 @@ function delTicket(req, res) {
   })
 }
 
-// function addDest(req, res) {
-//   Flight.findById(req.params.id, function (flight) {
-//     flight.destinations.push(req.body.airportId);
-//     flight.save(function (err) {
-//       if (err) console.log(err);
-//       res.redirect(`/flights/${flight._id}`);
-//     })
-//   })
-// }
-
 function addDest(req, res) {
   Flight.findById(req.params.id)
-      .then(flight => {
-          flight.destinations.push(req.body.airportId);
-          flight.save( err => {
-              if (err) console.log(err);
-              res.redirect(`/flights/${flight._id}`);
-          })
+    .then(flight => {
+      flight.destinations.push(req.body.airportId);
+      flight.save(err => {
+        if (err) console.log(err);
+        res.redirect(`/flights/${flight._id}`);
       })
+    })
 }
-
-// function delDest(req, res) {
-//   Flight.findById(req.params.id, function (flight) {
-//     const destIndex = flight.destinations.findIndex(destIdx =>
-//       destIdx.toString() == req.params.did)
-//     flight.destinations.splice(destIndex, 1)
-//     flight.save(function (err) {
-//       if (err) console.log(err);
-//       res.redirect(`/flights/${flight._id}`);
-//     })
-//   })
-// }
 
 function delDest(req, res) {
   Flight.findById(req.params.id)
-      .then(flight => {
-          const destIndex = flight.destinations.findIndex( d => 
-              d.toString() == req.params.did )
-          flight.destinations.splice(destIndex, 1)
-          flight.save( err => {
-              if (err) console.log(err);
-              res.redirect(`/flights/${flight._id}`);
-          })
+    .then(flight => {
+      const destIndex = flight.destinations.findIndex(d =>
+        d.toString() == req.params.did)
+      flight.destinations.splice(destIndex, 1)
+      flight.save(err => {
+        if (err) console.log(err);
+        res.redirect(`/flights/${flight._id}`);
       })
+    })
 }
 
 function sortDepart(req, res) {
@@ -203,15 +137,16 @@ function sortDepart(req, res) {
 }
 
 function indexSort(req, res) {
-  Flight.find({}).sort({departs: 'asc'})
-      .then( flights => {
-          const now = new Date().toISOString();
-          flights.forEach( flight => {
-              if (flight.departs.toISOString() < now) flight.past = true;
-          })
-          res.render('flights/index', {
-              title: "All Flights",
-              flights })
+  Flight.find({}).sort({ departs: 'asc' })
+    .then(flights => {
+      const now = new Date().toISOString();
+      flights.forEach(flight => {
+        if (flight.departs.toISOString() < now) flight.past = true;
       })
-      .catch(err => console.log(err))
+      res.render('flights/index', {
+        title: "All Flights",
+        flights
+      })
+    })
+    .catch(err => console.log(err))
 }

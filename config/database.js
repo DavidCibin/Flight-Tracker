@@ -9,9 +9,7 @@ mongoose.connect(process.env.DATABASE_URL, {
 });
 
 db.on("connected", () => {
-  console.log(
-    `Mongoose connected to MongoDB ${db.name} on ${db.host}:${db.port}.`
-  );
+  console.log(`Mongoose connected to MongoDB ${db.name} on ${db.host}:${db.port}.`);
 });
 
 module.exports = mongoose;

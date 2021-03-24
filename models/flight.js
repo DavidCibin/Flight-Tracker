@@ -30,9 +30,10 @@ const flightSchema = new Schema({
         min: 10,
         max: 9999
     },
-    departs: {type: Date, default: function() { 
-        const dt = new Date();
-        return dt.setFullYear(dt.getFullYear() +1)
+    departs: {
+        type: Date, default: function () {
+            const dt = new Date();
+            return dt.setFullYear(dt.getFullYear() + 1)
         }
     },
     tickets: [ticketSchema],

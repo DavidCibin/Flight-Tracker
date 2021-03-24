@@ -1,17 +1,3 @@
-// var test = document.getElementById('airplane');
-// test.onclick = function() {
-//     console.log('Hello');
-// }
-
-// const flyBy = new Audio('/audio/airplane.mp3');
-// document.getElementById('airplane').addEventListener('click', () => {
-//   'click',function (event){console.log(event)}
-//   console.log()
-//   flyBy.play()
-// }
-// );
-
-
 var util = {
   mobileMenu() {
     $("#nav").toggleClass("nav-visible");
