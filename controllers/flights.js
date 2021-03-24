@@ -17,11 +17,16 @@ module.exports = {
 }
 
 function index(req, res) {
-  Flight.find({}, function (err, flights) {
-    res.render('flights/index', {
-      flights,
-      title: "All Flights",
-    })
+  Flight.find( {}, (err, flights) => {
+      if (err) console.log(err)
+      const now = new Date().toISOString();
+      flights.forEach( flight => {
+          if (flight.departs.toISOString() < now) flight.past = true;
+      })
+      res.render('flights/index', {
+          title: "All Flights",
+          flights
+      })
   })
 }
 
@@ -136,26 +141,50 @@ function delTicket(req, res) {
   })
 }
 
+// function addDest(req, res) {
+//   Flight.findById(req.params.id, function (flight) {
+//     flight.destinations.push(req.body.airportId);
+//     flight.save(function (err) {
+//       if (err) console.log(err);
+//       res.redirect(`/flights/${flight._id}`);
+//     })
+//   })
+// }
+
 function addDest(req, res) {
-  Flight.findById(req.params.id, function (flight) {
-    flight.destinations.push(req.body.airportId);
-    flight.save(function (err) {
-      if (err) console.log(err);
-      res.redirect(`/flights/${flight._id}`);
-    })
-  })
+  Flight.findById(req.params.id)
+      .then(flight => {
+          flight.destinations.push(req.body.airportId);
+          flight.save( err => {
+              if (err) console.log(err);
+              res.redirect(`/flights/${flight._id}`);
+          })
+      })
 }
 
+// function delDest(req, res) {
+//   Flight.findById(req.params.id, function (flight) {
+//     const destIndex = flight.destinations.findIndex(destIdx =>
+//       destIdx.toString() == req.params.did)
+//     flight.destinations.splice(destIndex, 1)
+//     flight.save(function (err) {
+//       if (err) console.log(err);
+//       res.redirect(`/flights/${flight._id}`);
+//     })
+//   })
+// }
+
 function delDest(req, res) {
-  Flight.findById(req.params.id, function (flight) {
-    const destIndex = flight.destinations.findIndex(destIdx =>
-      destIdx.toString() == req.params.did)
-    flight.destinations.splice(destIndex, 1)
-    flight.save(function (err) {
-      if (err) console.log(err);
-      res.redirect(`/flights/${flight._id}`);
-    })
-  })
+  Flight.findById(req.params.id)
+      .then(flight => {
+          const destIndex = flight.destinations.findIndex( d => 
+              d.toString() == req.params.did )
+          flight.destinations.splice(destIndex, 1)
+          flight.save( err => {
+              if (err) console.log(err);
+              res.redirect(`/flights/${flight._id}`);
+          })
+      })
 }
 
 function sortDepart(req, res) {

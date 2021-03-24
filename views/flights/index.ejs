@@ -1,43 +1,39 @@
 <%- include('../partials/header.ejs') %>
-<%- include('../partials/nav.ejs') %>
+  <%- include('../partials/nav.ejs') %>
 
-  <a href="/flights/sort"><button class="sortBtn">Sort by Departure</button></a>
+  <div id="index" >
+    <a href="/flights/sort"><button class="sortBtn">Sort by Departure</button></a>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Airline</th>
-        <th>Flight #</th>
-        <th>Airport</th>
-        <th>Departs</th>
-        <th>Info</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% flights.forEach( function(f) { %>
+    <table>
+      <thead>
         <tr>
-          <td>
-            <%= f.airline %>
-          </td>
-          <td>
-            <%= f.flightNo %>
-          </td>
-          <td>
-            <%= f.airport %>
-          </td>
-          <td>
-            <% 
-              const dt = f.departs;
-              const departsDate = dt.toISOString().slice(0, 16).replace("T", " ");
-            %> 
-            <%= departsDate %>
-          </td>
-          <td><a href="/flights/<%=f._id%>"><button class="Btn">Info</button></a></td>
+          <th>Airline</th>
+          <th>Flight #</th>
+          <th>Airport</th>
+          <th>Departs</th>
+          <th>Info</th>
         </tr>
-
-
-        <% }) %>
-    </tbody>
-  </table>
-
-  <%- include('../partials/footer.ejs') %>
+      </thead>
+      <tbody>
+        <% flights.forEach( function(f) { %>
+          <tr <%=f.past ? "class=past" : '' %>>
+            <td>
+              <%= f.airline %>
+            </td>
+            <td>
+              <%= f.flightNo %>
+            </td>
+            <td>
+              <%= f.airport %>
+            </td>
+            <td>
+              <% const dt=f.departs; const departsDate=dt.toISOString().slice(0, 16).replace("T", " " ); %>
+                <%= departsDate %>
+            </td>
+            <td><a href="/flights/<%=f._id%>"><button class="Btn">Info</button></a></td>
+          </tr>
+          <% }) %>
+      </tbody>
+    </table>
+  </div>
+    <%- include('../partials/footer.ejs') %>

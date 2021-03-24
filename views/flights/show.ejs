@@ -13,7 +13,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <tr <%= flight.past ? "class=past" : '' %>>
                        <td><%= flight.airline %></td>
                         <td><%= flight.flightNo %></td>
                         <td><%= flight.airport %></td>
@@ -28,10 +28,9 @@
                 </tbody>
             </table>
         </div>
-
+        
         <div class="tickets">
-
-            <div class="column1">
+             <div class="column1">
                 <form action="/flights/<%=flight._id%>" method="POST" id="add-ticket">
                     <h1>Add Tickets</h1>
                     <table>
@@ -46,7 +45,7 @@
                             <tr>
                                 <td>
                                     <input name="seat" class="input" maxlength="3" style="text-transform:uppercase"
-                                        required placeholder="A1-F9" pattern="[A-F][1-9]\d?">
+                                        required placeholder="A1-F99" pattern="[A-F]\d{1,2}">
                                 </td>
                                 <td>
                                     <input type="number" placeholder="0.00" class="input" name="price" min=0>
@@ -85,19 +84,15 @@
                                             method="POST"><input type="submit" value="X" class="Btn"></form>
                                     </td>
                                 </tr>
-                                <% }) %>
+                            <% }) %>
                         </tbody>
                     </table>
-                    <% } %>
+                <% } %>
             </div>
-
-
-
-
 
             <div class="column3">
                 <h1>Add Destinations</h1>
-                <form class="add-destinations" action="/flights/<%=flight._id%>/destinations" method="post"></form>
+                <form class="add-destinations" action="/flights/<%=flight._id%>/destinations" method="post">
                 <table>
                     <thead>
                         <tr>
@@ -109,11 +104,9 @@
                         <tr>
                             <td>
                                 <select name="airportId">
-                                    <% destinations.forEach( dest=> { %>
-                                        <option value="<%= dest._id %>">
-                                            <%= dest.airport %>
-                                        </option>
-                                        <% }) %>
+                                    <% destinations.forEach( dest => { %>
+                                        <option value="<%= dest._id %>"><%= dest.airport %></option>
+                                    <% }) %>
                                 </select>
                             </td>
                             <td>
@@ -122,6 +115,7 @@
                         </tr>
                     </tbody>
                 </table>
+                </form>
             </div>
 
             <div class="column4">

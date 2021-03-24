@@ -173,7 +173,7 @@ input[type=submit]:hover {
   border-radius: 5px;
 }
 .input-time {
-  width: 200px;
+  /* width: 200px; */
   height:30px;
   border-radius: 5px;
 }
@@ -233,10 +233,12 @@ input.delete-ecks:active {
 .column3 {
   grid-column: 1 / 2;
   grid-row: 2;
+  margin-top: -35px;
 }
 .column4 {
   grid-column: 2 / 4;
   grid-row: 2;
+  margin-top: -35px;
 }
 
 
@@ -248,7 +250,7 @@ input.delete-ecks:active {
 }
 
 main {
-  width:900px;
+  width:700px;
   margin-top: 80px;
   margin-bottom: 80px;
 }
@@ -278,4 +280,12 @@ main {
   box-shadow: 0 0 5px gray;
   background-color: rgb(197, 193, 193);
   border: 2px solid rgb(78, 76, 76);
+}
+
+.past, .error {
+  color: rgb(255, 68, 68) !important;
+}
+
+#index, form {
+  float: left;
 }
