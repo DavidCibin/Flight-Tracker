@@ -89,7 +89,7 @@ button {
     animation-timing-function: cubic-bezier(0.17, 0.57, 0.31, 0.85);
   }
 
-  /* logo w/o icon */
+  /* logo w/o icon
   h1.logo {
     font-weight: bold;
     font-size: 1.75em;
@@ -98,14 +98,14 @@ button {
   } */
 
 /* logo with icon */
-  h1.logo {
-    font-weight: bold;
-    font-size: 1.9em;
-    line-height: 0.75em;
-    color: #fff;
-    display: flex;
-    margin-bottom: -24px;
-    font-family: monospace;
+h1.logo {
+  font-weight: bold;
+  font-size: 1.9em;
+  line-height: 0.75em;
+  color: #fff;
+  display: flex;
+  font-family: monospace;
+  margin-top: 13px;
 }
 
   h1.logo a, a:active, a:hover, a:visited {
