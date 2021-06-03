@@ -88,12 +88,26 @@ button {
     animation-fill-mode: forwards;
     animation-timing-function: cubic-bezier(0.17, 0.57, 0.31, 0.85);
   }
+
+  /* no icon
   h1.logo {
     font-weight: bold;
     font-size: 1.75em;
     line-height: 0.75em;
     color: #fff;
-  }
+  } */
+
+/* with icon */
+  h1.logo {
+    font-weight: bold;
+    font-size: 1.9em;
+    line-height: 0.75em;
+    color: #fff;
+    display: flex;
+    margin-bottom: -24px;
+    font-family: monospace;
+}
+
   h1.logo a, a:active, a:hover, a:visited {
     text-decoration: none;
     color: #fff;
