@@ -89,7 +89,7 @@ button {
     animation-timing-function: cubic-bezier(0.17, 0.57, 0.31, 0.85);
   }
 
-  /* no icon
+  /* logo w/o icon */
   h1.logo {
     font-weight: bold;
     font-size: 1.75em;
@@ -97,7 +97,7 @@ button {
     color: #fff;
   } */
 
-/* with icon */
+/* logo with icon */
   h1.logo {
     font-weight: bold;
     font-size: 1.9em;
